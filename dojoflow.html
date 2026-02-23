@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DojoFlow Release Notes - Highgate Studios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .release {
+            margin-bottom: 60px;
+        }
+
+        .release-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .release-date {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .release-stats {
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        .category {
+            margin-bottom: 35px;
+        }
+
+        .category-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-feature { background: #e8f5e9; color: #2e7d32; }
+        .badge-improvement { background: #e3f2fd; color: #1565c0; }
+        .badge-fix { background: #fff3e0; color: #e65100; }
+        .badge-admin { background: #f3e5f5; color: #7b1fa2; }
+        .badge-infra { background: #eceff1; color: #546e7a; }
+
+        .feature-group {
+            margin-bottom: 20px;
+        }
+
+        .feature-group-title {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            font-size: 0.95em;
+            color: #444;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .pr-ref {
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .release-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .release-date {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="back-link">&larr; Highgate Studios</a>
+            <h1>DojoFlow Release Notes</h1>
+            <p class="subtitle">What's new in DojoFlow</p>
+        </header>
+
+        <section class="release">
+            <div class="release-header">
+                <span class="release-date">Feb 8 &ndash; Feb 22, 2026</span>
+                <span class="release-stats">40 PRs merged &middot; 180+ new tests</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Recurring Classes</h3>
+                    <ul>
+                        <li>Create recurring class schedules (weekly, biweekly, and monthly) directly from the class creation form using a "Make Recurring" toggle. Standalone classes can also be converted to recurring when editing. <span class="pr-ref">#343, #364, #368</span></li>
+                        <li>Future recurring class instances appear as virtual entries on the owner calendar beyond the publish window, giving a full schedule overview without premature database materialization. <span class="pr-ref">#341</span></li>
+                        <li>Pause and resume recurring class generation without losing the template or any already-published classes. <span class="pr-ref">#347</span></li>
+                        <li>Remove individual dates from a recurring series via "Remove from Schedule" on the calendar. Published classes notify enrolled members before removal. <span class="pr-ref">#373</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Daily Studio Digest</h3>
+                    <ul>
+                        <li>New daily digest email for studio owners summarizing operational health, upcoming schedule, action items, and activity. Configurable send time with enable/disable toggle in admin settings. <span class="pr-ref">#358, #360, #369</span></li>
+                        <li>Digest includes "Recent Achievements" section and a "Watch For Today" section highlighting members one attendance away from a milestone who are enrolled in today's classes. <span class="pr-ref">#378</span></li>
+                        <li>Sign-up links per class row so owners can share enrollment links directly from the email. <span class="pr-ref">#369</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Achievement System</h3>
+                    <ul>
+                        <li>When a member is un-checked-in, achievements that are no longer earned are soft-revoked &mdash; hidden from the member but preserved in the database. Re-earning restores the same record, avoiding duplicate notifications. All affected views refresh in real-time. <span class="pr-ref">#377</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Instructor Dashboard</h3>
+                    <ul>
+                        <li>Dedicated instructor dashboard with stats cards (Your Classes, Your Students, This Week) and a class listing with clickable cards. <span class="pr-ref">#370</span></li>
+                        <li>New class detail view replaces the old roster page, combining class info header with an inline roster featuring student avatars, check-in/undo buttons, and real-time updates. <span class="pr-ref">#370</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Onboarding</h3>
+                    <ul>
+                        <li>New 4-step onboarding wizard (Welcome, Publishing Strategy, Email Notifications, Summary) runs after Stripe payment setup and before dashboard access. Pre-selects recommended defaults with skip option. <span class="pr-ref">#348</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Management</h3>
+                    <ul>
+                        <li>Age classification filter (Youth/Adult) added to members list. <span class="pr-ref">#301</span></li>
+                        <li>"Promotion Ready" filter evaluates gate progress in real-time and returns members who have met all requirements for their next rank. <span class="pr-ref">#300</span></li>
+                        <li>Uniform sizing (Top/Bottom/Belt) can now be viewed and edited by both the member and the studio owner. <span class="pr-ref">#303</span></li>
+                        <li>Studio owners can edit a member's first and last name through the Edit Member Data modal. <span class="pr-ref">#306</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Invitations &amp; Email</h3>
+                    <ul>
+                        <li>Member invitation limits enforced against the studio's plan. Bulk invitations auto-truncate to available slots with a warning. <span class="pr-ref">#298</span></li>
+                        <li>Test email preview: send a real test email for any automated template directly from email settings. <span class="pr-ref">#372</span></li>
+                        <li>Enrollment confirmation emails consolidated into a single digest when a member enrolls in multiple classes within a short window. <span class="pr-ref">#353</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Class &amp; Template UX</h3>
+                    <ul>
+                        <li>Class publishing UX improved: expected publish date displayed in calendar slide-over, "Publish Now" actually publishes, and publishing rules auto-save. <span class="pr-ref">#354</span></li>
+                        <li>Template form restructured into logical sections with toggle buttons for tags. <span class="pr-ref">#354</span></li>
+                        <li>Shared form components extracted between class form and template form to prevent drift. <span class="pr-ref">#368</span></li>
+                        <li>View toggle buttons (list/calendar) redesigned with more prominent pill-container styling. <span class="pr-ref">#351</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Profile</h3>
+                    <ul>
+                        <li>Profile page redesigned with modern card-based layout: hero banner with avatar and stats, two-column grid, per-card edit states, and auto-saving email preferences. <span class="pr-ref">#302</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Email &amp; Timezone</h3>
+                    <ul>
+                        <li>Unsubscribe links now use signed, environment-aware URLs. Supports both inline preferences and RFC 8058 one-click unsubscribe (Gmail). <span class="pr-ref">#362</span></li>
+                        <li><code>{studio_url}</code> placeholder added to all automated email templates and campaign emails. <span class="pr-ref">#314</span></li>
+                        <li>All datetime displays across owner, instructor, and student views now use the studio's configured timezone instead of UTC. <span class="pr-ref">#316</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Recurring Classes</h3>
+                    <ul>
+                        <li>Fixed templates generating virtual instances for past dates. <span class="pr-ref">#351, #346</span></li>
+                        <li>Fixed <code>deactivated_at</code> timestamp never being set on pause. <span class="pr-ref">#375</span></li>
+                        <li>Fixed duplicate recurrence day validation error from event race condition. <span class="pr-ref">#367</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Instructor &amp; Class Management</h3>
+                    <ul>
+                        <li>Fixed instructor "is invalid" validation error when selecting the studio owner as instructor. <span class="pr-ref">#375</span></li>
+                        <li>Fixed instructor demotion leaving stale class assignments on upcoming classes and templates. <span class="pr-ref">#322</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Billing &amp; Subscriptions</h3>
+                    <ul>
+                        <li>Fixed 8 Stripe webhook handling bugs causing subscription status to fall out of sync. <span class="pr-ref">#319</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Data &amp; Email</h3>
+                    <ul>
+                        <li>Fixed member name field losing the unchanged component when updating only first or last name. <span class="pr-ref">#306</span></li>
+                        <li>Fixed State and Country dropdowns truncated in profile edit form. <span class="pr-ref">#305</span></li>
+                        <li>Fixed unsubscribe URL placeholder in campaign emails left as literal text. <span class="pr-ref">#362</span></li>
+                        <li>Fixed studio slug being regenerated when studio name changed, breaking existing email links. <span class="pr-ref">#314</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">UI</h3>
+                    <ul>
+                        <li>Fixed "Publish Now" button creating draft classes instead of publishing. <span class="pr-ref">#354</span></li>
+                        <li>Fixed leap year crash in age calculation for Feb 29 birthdays. <span class="pr-ref">#368</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Admin -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-admin">Admin &amp; Internal</span></h2>
+                <ul>
+                    <li>Admin panel overhaul: collapsible sidebar, real activity feed dashboard, webhook event viewer, studio health diagnostics, data integrity scanner, real analytics, system configuration with feature flags. <span class="pr-ref">#337</span></li>
+                    <li>Admin billing inspector rewritten with pagination, search, status filtering, CSV export, and per-user Stripe sync. <span class="pr-ref">#334</span></li>
+                    <li>Full user detail page with profile card, studio listing, billing summary, audit logs, and admin actions. <span class="pr-ref">#335, #336</span></li>
+                    <li>All 19 email templates now editable from admin panel with auto-generated plain text. <span class="pr-ref">#339</span></li>
+                    <li>Email tracking system: logs all transactional, campaign, and system emails with success/failure status. <span class="pr-ref">#338</span></li>
+                </ul>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-infra">Infrastructure</span></h2>
+                <ul>
+                    <li>Replaced fire-and-forget webhook processing with Oban worker providing retries and deduplication. <span class="pr-ref">#319</span></li>
+                    <li>Added subscription sync cron job (every 6 hours) to reconcile statuses against Stripe. <span class="pr-ref">#319</span></li>
+                    <li>Converted digest scheduling from hourly cron polling to per-studio Oban jobs that fire at the exact configured time. <span class="pr-ref">#360</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Highgate Studios LLC. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
