@@ -178,6 +178,75 @@
             <p class="subtitle">What's new in DojoFlow</p>
         </header>
 
+<section class="release">
+            <div class="release-header">
+                <span class="release-date">Feb 23 &ndash; Feb 28, 2026</span>
+                <span class="release-stats">21 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Batch Publishing</h3>
+                    <ul>
+                        <li>Batch materialization: classes scheduled for batch publishing are now materialized and published by a dedicated Oban worker at the studio's configured publish time, with a summary email to the studio owner. <span class="pr-ref">#396</span></li>
+                        <li>Same-day scheduling support: batch publish now handles classes scheduled for the current day, and draft classes are properly published during a batch run. <span class="pr-ref">#396</span></li>
+                        <li>Batch publish notification opt-out: studio owners can disable the summary email from class settings. <span class="pr-ref">#396</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Instructor Dashboard Redesign</h3>
+                    <ul>
+                        <li>Class schedule cards redesigned with a vertical timeline layout featuring colored left accent borders, opaque timeline dots, and time-based grouping. <span class="pr-ref">#393, #394</span></li>
+                        <li>Enrollment indicators and attendee chips displayed directly on class cards with student avatars. <span class="pr-ref">#394</span></li>
+                        <li>Expandable class cards now load full enrollment details on demand. <span class="pr-ref">#393</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Mobile &amp; Responsive</h3>
+                    <ul>
+                        <li>Instructor dashboard mobile layout overhauled: improved card sizing, better text readability (10px &rarr; 12px base), and tighter timeline padding for small screens. <span class="pr-ref">#393, #394</span></li>
+                        <li>Timeline dot and line alignment polished across breakpoints with proper offset calculations for left padding. <span class="pr-ref">#394</span></li>
+                        <li>Badge alignment and spacing cleaned up on mobile class cards. <span class="pr-ref">#394</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Class Management</h3>
+                    <ul>
+                        <li>Batch schedule preview now displays times in 12-hour format instead of 24-hour. <span class="pr-ref">#396</span></li>
+                        <li>Fixed duplicate studio owner appearing in the instructor dropdown when the owner is also an instructor. <span class="pr-ref">#396</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed multi-tenant session isolation: all authenticated routes now enforce studio membership, preventing cross-studio data access via session manipulation. <span class="pr-ref">#391</span></li>
+                    <li>Reduced login friction with sliding session windows and longer session durations so users aren't forced to re-authenticate frequently. <span class="pr-ref">#390</span></li>
+                </ul>
+            </div>
+
+            <!-- Admin -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-admin">Admin &amp; Internal</span></h2>
+                <ul>
+                    <li>Removed legacy admin class management routes and studio dashboard that were superseded by newer pages. <span class="pr-ref">#395</span></li>
+                </ul>
+            </div>
+        </section>
+
         <section class="release">
             <div class="release-header">
                 <span class="release-date">Feb 8 &ndash; Feb 22, 2026</span>
