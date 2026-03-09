@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DojoFlow Release Notes - Highgate Studios</title>
+    <title>Rolliance Release Notes - Highgate Studios</title>
     <style>
         * {
             margin: 0;
@@ -174,11 +174,145 @@
     <div class="container">
         <header>
             <a href="/" class="back-link">&larr; Highgate Studios</a>
-            <h1>DojoFlow Release Notes</h1>
-            <p class="subtitle">What's new in DojoFlow</p>
+            <h1>Rolliance Release Notes</h1>
+            <p class="subtitle">What's new in Rolliance</p>
         </header>
 
-<section class="release">
+        <section class="release">
+            <div class="release-header">
+                <span class="release-date">Mar 1 &ndash; Mar 8, 2026</span>
+                <span class="release-stats">18 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Recurring Email Campaigns</h3>
+                    <ul>
+                        <li>Create recurring email campaigns with weekly or biweekly scheduling, configurable send day and time per studio timezone. <span class="pr-ref">#17</span></li>
+                        <li>Pause and resume recurring campaigns without losing send history. Active campaigns show next scheduled send date. <span class="pr-ref">#17</span></li>
+                        <li>Dedicated Oban worker handles per-campaign scheduling with automatic rescheduling after each send and crash recovery on deploy. <span class="pr-ref">#17</span></li>
+                        <li>Send history tracked via email logs with success/failure counts displayed on the campaign show page. <span class="pr-ref">#17</span></li>
+                        <li>Existing studio digest settings automatically migrated to recurring campaigns, preserving all configuration. <span class="pr-ref">#17</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Email Campaign UI Overhaul</h3>
+                    <ul>
+                        <li>Email category selector: choose between "Studio Update" and "Marketing" to control which member email preference is checked before sending. <span class="pr-ref">#17</span></li>
+                        <li>Recipient exclusion modal: deselect specific members from a campaign with live opted-in count updates. <span class="pr-ref">#17</span></li>
+                        <li>Campaign index redesigned with stats dashboard (Total Sent, Drafts, Scheduled, Recipients) and desktop table with mobile card fallback. <span class="pr-ref">#17</span></li>
+                        <li>Campaign show page standardized to design guidelines: plain divs, correct button colors, badge sizing, and full email preview rendering. <span class="pr-ref">#17</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Multi-Email Invitations</h3>
+                    <ul>
+                        <li>Invitation form now accepts comma-separated email addresses for sending multiple invitations at once. <span class="pr-ref">#17</span></li>
+                        <li>Per-email validation: format checking, existing member detection, pending invite detection, and duplicate detection with clear error messages. <span class="pr-ref">#17</span></li>
+                        <li>Member limit status banner shows remaining slots and pending invitation count against the studio's plan limit. <span class="pr-ref">#17</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Studio Export &amp; Import</h3>
+                    <ul>
+                        <li>New mix tasks to export a studio and all its related data (~40 tables) to a self-contained JSON file, and import it into any Rolliance database. <span class="pr-ref">#2, #3</span></li>
+                        <li>Supports cross-environment migration (e.g. DojoFlow staging to Rolliance dev) with owner email override, slug override, and dry-run mode. <span class="pr-ref">#2</span></li>
+                        <li>Conflict handling: slug collisions, existing owner reuse, duplicate user skip, missing table graceful skip, full transaction rollback on failure. <span class="pr-ref">#2</span></li>
+                        <li>Remote database support via DATABASE_URL with SSL for Render-hosted databases. <span class="pr-ref">#2</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Seed Data Tools</h3>
+                    <ul>
+                        <li><code>mix rolliance.seed_members</code>: create random member accounts in a studio, bypassing billing checks, with configurable count and dry-run mode. <span class="pr-ref">#16</span></li>
+                        <li><code>mix rolliance.seed_enrollments</code>: randomly enroll members into upcoming classes with a configurable fill rate and realistic distribution curve. <span class="pr-ref">#16</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Landing Page</h3>
+                    <ul>
+                        <li>Draft community-focused landing page added for review. <span class="pr-ref">#10</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Class Details &amp; Instructor Views</h3>
+                    <ul>
+                        <li>Class details refactored from 3-tab layout to a unified single page with all information visible at once. <span class="pr-ref">#14</span></li>
+                        <li>Responsive class details slide-over with lg breakpoint, inline instructor display, and enrollee list. <span class="pr-ref">#15</span></li>
+                        <li>Inline description editing for instructors on their class detail page. <span class="pr-ref">#15</span></li>
+                        <li>Instructor dashboard refactored to true server-side pagination with scheduled class support. <span class="pr-ref">#15, #16</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Week-Based Publishing</h3>
+                    <ul>
+                        <li>New <code>week_start_day</code> studio setting with timezone-safe week boundaries for batch publishing. <span class="pr-ref">#16</span></li>
+                        <li>Week-based range options for class schedules: "This Week", "Next Week", and "This &amp; Next Week" replace raw day counts. <span class="pr-ref">#17</span></li>
+                        <li>Publishing preview now shows which day the week starts on. <span class="pr-ref">#17</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Email Settings</h3>
+                    <ul>
+                        <li>Schedule Digest configuration removed from email settings page (consolidated into the recurring campaigns system). <span class="pr-ref">#17</span></li>
+                        <li>RFC-compliant List-Unsubscribe headers added to recurring campaign emails for Gmail one-click unsubscribe. <span class="pr-ref">#17</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed subscription plan price ID mismatch: original migration baked placeholder Stripe price IDs at compile time during <code>mix release</code>. New runtime migration syncs DB with actual env var values on deploy. <span class="pr-ref">#17</span></li>
+                    <li>Fixed password reset emails not being sent; restyled password reset pages to match application design. <span class="pr-ref">#11</span></li>
+                    <li>Locked down self-registration to prevent unauthorized account creation. <span class="pr-ref">#11</span></li>
+                    <li>Fixed studio import using stale <code>inserted_at</code> timestamps that triggered spurious batch publishing catch-up runs. <span class="pr-ref">#4, #5</span></li>
+                    <li>Fixed <code>Release.seed/0</code> crashing because Repo was not started during release seed step. <span class="pr-ref">#4</span></li>
+                    <li>Fixed staging Docker build by hardcoding <code>MIX_ENV=staging</code> in Dockerfile. <span class="pr-ref">#8</span></li>
+                </ul>
+            </div>
+
+            <!-- Admin -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-admin">Admin &amp; Internal</span></h2>
+                <ul>
+                    <li>Admin studio detail page expanded with email statistics (total sent, success/failure breakdown by category), member opt-out tallies, and daily digest controls (toggle, time picker, manual send, reset). <span class="pr-ref">#17</span></li>
+                    <li>Real-time PubSub updates on admin email stats when emails are sent. <span class="pr-ref">#17</span></li>
+                    <li>Responsive admin improvements: overflow handling, mobile-friendly stat grids, sticky breadcrumbs, dropdown menus. <span class="pr-ref">#17</span></li>
+                </ul>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-infra">Infrastructure</span></h2>
+                <ul>
+                    <li>Recurring campaign worker added to OTP supervision tree with crash recovery and automatic rescheduling. <span class="pr-ref">#17</span></li>
+                    <li>Email logger module for tracking studio email stats and opt-out counts. <span class="pr-ref">#17</span></li>
+                    <li>Playwright browser E2E test infrastructure added with devcontainer support. <span class="pr-ref">#3</span></li>
+                    <li>Staging environment enabled in render.yaml with dedicated Dockerfile. <span class="pr-ref">#6, #7</span></li>
+                    <li>Billing URLs now derived from Phoenix endpoint config instead of hardcoded values. <span class="pr-ref">#2</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="release">
             <div class="release-header">
                 <span class="release-date">Feb 23 &ndash; Feb 28, 2026</span>
                 <span class="release-stats">21 PRs merged</span>
