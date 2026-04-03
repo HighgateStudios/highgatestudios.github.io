@@ -180,6 +180,334 @@
 
         <section class="release">
             <div class="release-header">
+                <span class="release-date">Mar 28 &ndash; Apr 3, 2026</span>
+                <span class="release-stats">8 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Billing &amp; Class Passes</h3>
+                    <ul>
+                        <li>New member billing system: studios can create class access passes (unlimited, limited, drop-in) with configurable credit tracking, expiration dates, and pricing. <span class="pr-ref">#136</span></li>
+                        <li>Credit enforcement at check-in and enrollment with overage tracking and admin billing toggle. Walk-in override allows staff to bypass credit checks. <span class="pr-ref">#136</span></li>
+                        <li>Purchase-for-dependent flow lets primary account holders buy passes on behalf of family members. <span class="pr-ref">#136</span></li>
+                        <li>Route guards redirect members without active passes to the studio page with a flash message instead of a 404 loop. <span class="pr-ref">#136</span></li>
+                        <li>Member Billing link added to the studio owner sidebar for managing passes and credits. <span class="pr-ref">#136</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Stripe Connect Payments</h3>
+                    <ul>
+                        <li>Stripe Connect webhook processing for handling payment events (charges, refunds, disputes) on connected accounts. <span class="pr-ref">#144, #145</span></li>
+                        <li>Connect payment end-to-end test suite with comprehensive coverage of webhook event handling. <span class="pr-ref">#144, #145</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Stripe Integration Test Suite</h3>
+                    <ul>
+                        <li>Live integration test suite using Stripe Test Clocks to simulate subscription lifecycle scenarios (creation, upgrades, downgrades, cancellation, past_due grace periods). <span class="pr-ref">#142</span></li>
+                        <li>14-day grace period enforcement for past_due subscriptions before access revocation. <span class="pr-ref">#142</span></li>
+                        <li>Deployed environment support for running manual test plans against staging. <span class="pr-ref">#140</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Design System Migration (Phase 2)</h3>
+                    <ul>
+                        <li>All studio-owner pages migrated from DaisyUI component classes to the new ds-* design system tokens. <span class="pr-ref">#151</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed mobile scroll being completely blocked after navigating via the hamburger menu. <span class="pr-ref">#155</span></li>
+                    <li>Fixed mobile tooltip dismiss behavior on the achievement trophy case. <span class="pr-ref">#150</span></li>
+                    <li>Fixed mixed-key map crash when creating pass types via the LiveView form. <span class="pr-ref">#149</span></li>
+                    <li>Fixed progression diagram rendering all stripe colors as white. <span class="pr-ref">#141</span></li>
+                    <li>Fixed flaky month calendar tests that break at date boundaries. <span class="pr-ref">#155</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="release">
+            <div class="release-header">
+                <span class="release-date">Mar 16 &ndash; Mar 28, 2026</span>
+                <span class="release-stats">30 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Family Accounts</h3>
+                    <ul>
+                        <li>Primary members can add dependents (children or adults without credentials) to their family with configurable per-plan caps. <span class="pr-ref">#135</span></li>
+                        <li>Family enrollment picker: enroll or unenroll dependents in classes from the class card with multi-select support. <span class="pr-ref">#135</span></li>
+                        <li>Graduate flow: promote adult dependents to full accounts using the invitation system with consent tracking. <span class="pr-ref">#135</span></li>
+                        <li>Family link requests: members can request to link existing accounts as dependents with owner approval workflow. <span class="pr-ref">#135</span></li>
+                        <li>Non-participant toggle for staff to mark dependents who attend but don't participate (e.g., younger siblings). <span class="pr-ref">#135</span></li>
+                        <li>Dependent achievements displayed in family section with expandable trophy carousels and real-time PubSub updates. <span class="pr-ref">#135</span></li>
+                        <li>Studio settings for enabling family accounts and configuring dependent limits per plan tier. <span class="pr-ref">#135</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Design System Foundation (Phase 1)</h3>
+                    <ul>
+                        <li>New ds-* design system tokens replacing DaisyUI component classes, establishing the foundation for full DaisyUI removal. <span class="pr-ref">#138</span></li>
+                        <li>DaisyUI component classes replaced with plain Tailwind CSS across core components. <span class="pr-ref">#138</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Belt &amp; Rank Overhaul</h3>
+                    <ul>
+                        <li>Complete redesign of the belt &amp; rank editor with visual timeline, collapsible belts, and inline editing for rank names, stripe colors, and gate requirements. <span class="pr-ref">#99</span></li>
+                        <li>Bulk operations: select multiple ranks for bulk delete or bulk color override. <span class="pr-ref">#99</span></li>
+                        <li>New belt creation wizard with style picker, live preview, sub-rank auto-creation, and smart color defaults. <span class="pr-ref">#91</span></li>
+                        <li>Shared rank editor component used by both studio and admin contexts via adapter pattern. <span class="pr-ref">#129</span></li>
+                        <li>Visual progression diagram showing rank-to-rank paths in the rank editor. <span class="pr-ref">#132</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Onboarding Wizard Redesign</h3>
+                    <ul>
+                        <li>Post-payment onboarding redesigned as a 9-step split-panel wizard covering studio setup, belt &amp; rank configuration, class creation, email preferences, and invitations. <span class="pr-ref">#89</span></li>
+                        <li>Brand identity step added to onboarding: upload logo with client-side cropper, configure colors, and preview brand header. <span class="pr-ref">#100</span></li>
+                        <li>Skip onboarding now preserves the user's partial changes instead of discarding them. <span class="pr-ref">#89</span></li>
+                        <li>Comma-separated and pasted email lists supported in onboarding invitation steps. <span class="pr-ref">#89</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Studio Theming</h3>
+                    <ul>
+                        <li>Studios can configure brand color, logo, tagline, and header style (solid, gradient, texture) applied across all member-facing pages and emails. <span class="pr-ref">#73</span></li>
+                        <li>Admin-configurable accent color override for class schedule cards. <span class="pr-ref">#78</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Class Schedule Redesign</h3>
+                    <ul>
+                        <li>Member class schedule redesigned with floating timeline layout, decoupled from DaisyUI. <span class="pr-ref">#68</span></li>
+                        <li>Profile page redesigned with trophy shelf, compact class cards, and improved LiveView patching. <span class="pr-ref">#68</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Messaging &amp; Mobile UX</h3>
+                    <ul>
+                        <li>Studio conversation mobile UX overhauled: auto-growing textarea, hidden header on scroll, Enter key sends on desktop while adding newlines on mobile. <span class="pr-ref">#127, #131</span></li>
+                        <li>Mobile messaging UX: fixed input visibility behind keyboard, improved studio nav breadcrumbs, and responsive layout. <span class="pr-ref">#125</span></li>
+                        <li>Compact message headers, improved category buttons, and input border styling for member messaging. <span class="pr-ref">#131</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Studio Settings</h3>
+                    <ul>
+                        <li>Studio name max length validation (50 chars) with UI truncation and slug sanitization. <span class="pr-ref">#128</span></li>
+                        <li>Click-to-copy studio URL in owner settings with improved URL overflow handling. <span class="pr-ref">#128</span></li>
+                        <li>Member signup visibility toggle: studios can hide/show class signup from member-facing pages with real-time PubSub updates. <span class="pr-ref">#116</span></li>
+                        <li>Inline class description editing added to slide-over and detail pages. <span class="pr-ref">#114</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Instructor Dashboard</h3>
+                    <ul>
+                        <li>Instructor dashboard and class detail restyled with the new custom design system. <span class="pr-ref">#76</span></li>
+                        <li>Today's Overview section moved above class list for better visibility. <span class="pr-ref">#78</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Student Pages</h3>
+                    <ul>
+                        <li>Student profile and class pages refactored: decomposed into smaller components, CSS migrated from DaisyUI to Tailwind, and mobile spacing improved. <span class="pr-ref">#74</span></li>
+                        <li>Security and performance audit on student /classes and /profile pages with studio-scoping guards. <span class="pr-ref">#72</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Email &amp; Auth</h3>
+                    <ul>
+                        <li>Brand header texture rendering fixed on member auth pages with consolidated styling. <span class="pr-ref">#75</span></li>
+                        <li>Notification preferences moved from email settings to studio settings. <span class="pr-ref">#66</span></li>
+                        <li>Emoji picker upgraded from limited built-in to full emoji-mart component on achievements pages. <span class="pr-ref">#66</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Mobile UX</h3>
+                    <ul>
+                        <li>Mobile class card improvements: compact layout matching mockups, dark mode contrast fixes, and improved spacing. <span class="pr-ref">#78, #133</span></li>
+                        <li>Real-time class count updates on student profile. <span class="pr-ref">#81</span></li>
+                        <li>Walk-in enroll+check-in flow added to owner and instructor class detail pages. <span class="pr-ref">#135</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed onboarding invitation URLs, avatar re-upload failures, and class publish crash. <span class="pr-ref">#104</span></li>
+                    <li>Fixed R2Storage double-resolving filename causing version suffix duplication. <span class="pr-ref">#98</span></li>
+                    <li>Fixed activity feed bugs and added feed visibility toggle. <span class="pr-ref">#95</span></li>
+                    <li>Fixed belt creation failures from stale belt icon name constraint. <span class="pr-ref">#91, #99</span></li>
+                    <li>Fixed belt editor dark mode with theme-aware tokens replacing hardcoded colors. <span class="pr-ref">#119</span></li>
+                    <li>Fixed LiveView custom select replacing native timezone dropdown. <span class="pr-ref">#118</span></li>
+                    <li>Fixed cancelled invitations showing by default; added Show Canceled toggle. <span class="pr-ref">#117</span></li>
+                    <li>Fixed onboarding email validation replacing invisible flash with inline errors. <span class="pr-ref">#112</span></li>
+                    <li>Fixed long email addresses overflowing chip tags in onboarding invite steps. <span class="pr-ref">#111</span></li>
+                    <li>Fixed attendance report filter dropdowns not responding to changes. <span class="pr-ref">#122</span></li>
+                    <li>Fixed onboarding category dropdown showing empty options. <span class="pr-ref">#123</span></li>
+                    <li>Fixed member sign-out returning a 404 (route was inside auth guard). <span class="pr-ref">#87</span></li>
+                    <li>Fixed XSS vulnerability in CsToast component (used textContent instead of innerHTML). <span class="pr-ref">#68</span></li>
+                    <li>Fixed GenServer crash from missing <code>{:messages_read, _}</code> handler in MemberLive.Show. <span class="pr-ref">#72</span></li>
+                    <li>Fixed member detail page not updating on invitation acceptance via PubSub. <span class="pr-ref">#135</span></li>
+                    <li>Fixed class roster crash when PubSub refresh missed primary_contact enrichment. <span class="pr-ref">#135</span></li>
+                    <li>Fixed total_classes_override to be additive with actual attendance count. <span class="pr-ref">#81</span></li>
+                    <li>Fixed deactivated members still able to log in or maintain sessions. <span class="pr-ref">#80</span></li>
+                </ul>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-infra">Infrastructure</span></h2>
+                <ul>
+                    <li>File uploads migrated from Render persistent disk to Cloudflare R2 object storage with release eval migration support. <span class="pr-ref">#82, #83, #84</span></li>
+                    <li>Avatar processing consolidated to Vix/libvips with client-side cropping via Cropper.js. <span class="pr-ref">#86</span></li>
+                    <li>Stripe webhook handler integration tests and billing tests added to CI. <span class="pr-ref">#90</span></li>
+                    <li>Worktree bootstrap script improved with port detection, named volumes, and cleanup. <span class="pr-ref">#87</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="release">
+            <div class="release-header">
+                <span class="release-date">Mar 8 &ndash; Mar 15, 2026</span>
+                <span class="release-stats">12 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Studio Activity Feed</h3>
+                    <ul>
+                        <li>Real-time studio activity feed with emoji reactions, threaded comments, and PubSub-driven updates. <span class="pr-ref">#24</span></li>
+                        <li>Activity notifications with unseen indicator badge on trophy icon. <span class="pr-ref">#24, #25</span></li>
+                        <li>Configurable activity feed settings: toggle reactions and comments per studio. <span class="pr-ref">#25</span></li>
+                        <li>Student activity feed hides awarder info and positions notification dot as badge. <span class="pr-ref">#24, #69</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Toast Notifications</h3>
+                    <ul>
+                        <li>Auto-dismissing toast notification system for student enrollment pages, replacing flash messages. <span class="pr-ref">#52</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">New Class Badge</h3>
+                    <ul>
+                        <li>NEW badge displayed on recently added classes for members, with debounced last_seen tracking. Cancelled classes excluded. <span class="pr-ref">#53, #54</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Enrollment Comments</h3>
+                    <ul>
+                        <li>Members can add an optional comment when enrolling in a class, visible to instructors on the roster. <span class="pr-ref">#50</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Message Email Notifications</h3>
+                    <ul>
+                        <li>Batched email notifications sent to studio owners when they receive new messages, preventing notification flooding. <span class="pr-ref">#55</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Messaging Improvements</h3>
+                    <ul>
+                        <li>Recipient info banner displayed in the new message modal showing who the message will be sent to. <span class="pr-ref">#49</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Landing Page &amp; Billing</h3>
+                    <ul>
+                        <li>Landing page redesigned with dark editorial theme applied to sign-in and signup pages. <span class="pr-ref">#56</span></li>
+                        <li>Fixed plan selection not carrying over from landing page to the setup wizard. <span class="pr-ref">#58</span></li>
+                        <li>Cancellation reasons tracked on enrollments and displayed in daily digest emails and on class rosters. <span class="pr-ref">#21</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+                <ul>
+                    <li>Onboarding studio setup flow redesigned with extracted marketing theme system. <span class="pr-ref">#67</span></li>
+                    <li>CANCELLED badge moved before class name; removed redundant cancelled button. <span class="pr-ref">#57</span></li>
+                    <li>Login input styling unified across sign-in, sign-up, and reset-password pages. <span class="pr-ref">#59</span></li>
+                    <li>Danger Zone archive button gated by studios:write permission; duplicates removed. <span class="pr-ref">#38</span></li>
+                    <li>Daily digest recovery: DailyStudioDigestWorker scheduled on application startup. <span class="pr-ref">#30</span></li>
+                    <li>Avatar images now lazy-loaded with cache headers for improved performance. <span class="pr-ref">#21</span></li>
+                </ul>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed landing page sections invisible before LiveView JS connects. <span class="pr-ref">#45</span></li>
+                    <li>Fixed landing page navigation, registration loading state, and auth redirect. <span class="pr-ref">#46</span></li>
+                    <li>Fixed class disappearing on description update from duplicate PubSub broadcasts. <span class="pr-ref">#21</span></li>
+                    <li>Fixed tier_for_price_id matching empty string to a tier in billing. <span class="pr-ref">#100</span></li>
+                </ul>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-infra">Infrastructure</span></h2>
+                <ul>
+                    <li>Playwright browser tests added for signup flow and auth redirect. <span class="pr-ref">#60</span></li>
+                    <li>Persistent disk and UPLOAD_STORAGE_PATH config added to Render deployment. <span class="pr-ref">#82</span></li>
+                    <li>libvips added to all Dockerfiles for image upload processing. <span class="pr-ref">#27</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="release">
+            <div class="release-header">
                 <span class="release-date">Mar 1 &ndash; Mar 8, 2026</span>
                 <span class="release-stats">18 PRs merged</span>
             </div>
