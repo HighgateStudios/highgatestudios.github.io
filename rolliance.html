@@ -180,6 +180,125 @@
 
         <section class="release">
             <div class="release-header">
+                <span class="release-date">Apr 3 &ndash; Apr 10, 2026</span>
+                <span class="release-stats">21 PRs merged</span>
+            </div>
+
+            <!-- New Features -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-feature">New Features</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Billing Subscriptions &amp; Invoicing</h3>
+                    <ul>
+                        <li>Subscription enrollment flow: studio owners can subscribe members to recurring plans via a payment link sent through Stripe Checkout. Supports billing date selection (signup date or fixed day), proration for mid-cycle starts, and family member selection. <span class="pr-ref">#159</span></li>
+                        <li>Invoicing system with pending enrollment tracking, checkout URL generation via background Oban workers, and real-time status updates via PubSub. <span class="pr-ref">#159</span></li>
+                        <li>Cancel-at-period-end support for memberships, allowing scheduled cancellations that preserve access until the billing period ends. <span class="pr-ref">#177</span></li>
+                        <li>Cancellation request workflow: members can request cancellation, studio owners can approve or deny. <span class="pr-ref">#159</span></li>
+                        <li>Cancel pending enrollments: studio owners can now cancel in-progress subscription enrollments, which expires the Stripe Checkout Session and marks the invoice as cancelled. <span class="pr-ref">#190</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Family Billing</h3>
+                    <ul>
+                        <li>Unified family billing: subscribe multiple family members to a single plan with tiered pricing per dependent. <span class="pr-ref">#177</span></li>
+                        <li>Dependent credit display and pass management from the family member detail view. <span class="pr-ref">#177</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Discount Codes</h3>
+                    <ul>
+                        <li>Discount code member assignments: assign specific discount codes to individual members with studio owner email notifications. <span class="pr-ref">#186</span></li>
+                        <li>Discount code validation and application during subscription enrollment with real-time price preview. <span class="pr-ref">#186</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Member Portal</h3>
+                    <ul>
+                        <li>New Payments page in the member portal showing billing history and active subscriptions, gated behind Stripe Connect status. <span class="pr-ref">#185</span></li>
+                        <li>Stripe Connect onboarding step added to the studio setup flow. <span class="pr-ref">#185</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Blog CMS</h3>
+                    <ul>
+                        <li>Full blog content management system with admin CRUD, public-facing pages, and SEO infrastructure. <span class="pr-ref">#158</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Multi-Rank System</h3>
+                    <ul>
+                        <li>Studios can create multiple rank/belt systems with tab navigation, rename, and delete support. <span class="pr-ref">#157</span></li>
+                        <li>Soft-delete rank systems to preserve member rank display history. <span class="pr-ref">#157</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Dev &amp; Test Tooling</h3>
+                    <ul>
+                        <li>Admin studio seeder for dev/test environments with 10 member billing scenarios (power user, capped, pack user, paused, expired, etc.). <span class="pr-ref">#156, #163, #164</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Improvements -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-improvement">Improvements</span></h2>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Billing &amp; Payments</h3>
+                    <ul>
+                        <li>Consolidated pricing source of truth onto PricingCache, dropped the subscription_plans database table. <span class="pr-ref">#188</span></li>
+                        <li>Proration threshold and timezone-aware day counting for accurate billing anchors. <span class="pr-ref">#175, #176, #178, #184</span></li>
+                        <li>Duplicate pass prevention and loading overlays during billing operations. <span class="pr-ref">#169, #179</span></li>
+                        <li>Removed subscription-style cancellation options (End of Period) from non-recurring plan types. <span class="pr-ref">#183</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">UI/UX</h3>
+                    <ul>
+                        <li>Responsive layouts, split-pane messaging, simplified breadcrumbs, and compact controls. <span class="pr-ref">#168</span></li>
+                        <li>Member pages polish: dropdowns, discount code chips, check-in status colors. <span class="pr-ref">#189</span></li>
+                        <li>Email verification banner removed; studio owner emails rebranded. <span class="pr-ref">#186</span></li>
+                    </ul>
+                </div>
+
+                <div class="feature-group">
+                    <h3 class="feature-group-title">Performance &amp; Reliability</h3>
+                    <ul>
+                        <li>Optimized member portal LiveView performance with reduced re-renders. <span class="pr-ref">#167</span></li>
+                        <li>Stripe integration security and architecture audit addressing uniqueness constraints and billing gaps. <span class="pr-ref">#160, #161</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div class="category">
+                <h2 class="category-title"><span class="category-badge badge-fix">Bug Fixes</span></h2>
+                <ul>
+                    <li>Fixed "Send Payment Link" button doing nothing due to nested HTML forms causing the browser to orphan the submit button. <span class="pr-ref">#190</span></li>
+                    <li>Fixed subscription detection, phantom customer creation, and webhook correlation for platform billing. <span class="pr-ref">#187</span></li>
+                    <li>Fixed raw database field names appearing in user-facing flash messages; changeset errors now show human-readable labels. <span class="pr-ref">#153</span></li>
+                    <li>Fixed member portal bottom nav, messages panel, and new conversation modal breaking on certain routes. <span class="pr-ref">#174</span></li>
+                    <li>Fixed class comment character counter not updating while typing. <span class="pr-ref">#173</span></li>
+                    <li>Fixed Stripe Connect status refresh for v1 Express accounts. <span class="pr-ref">#172</span></li>
+                    <li>Fixed duplicate panel mounts and gated billing behind Stripe Connect status. <span class="pr-ref">#170</span></li>
+                    <li>Fixed 4 member billing bugs: GenServer crash, Stripe param error, dependent checkout, family visibility. <span class="pr-ref">#171</span></li>
+                    <li>Fixed 6 member billing UX issues including discount pass type selector and design token migration. <span class="pr-ref">#165, #182</span></li>
+                    <li>Fixed proration threshold off-by-one error and invoice PubSub broadcasting. <span class="pr-ref">#184</span></li>
+                    <li>Fixed flaky timezone tests by using fixed reference datetimes instead of wall clock. <span class="pr-ref">#161</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="release">
+            <div class="release-header">
                 <span class="release-date">Mar 28 &ndash; Apr 3, 2026</span>
                 <span class="release-stats">8 PRs merged</span>
             </div>
